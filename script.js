@@ -29,17 +29,31 @@ document.addEventListener("DOMContentLoaded", function () {
     let applesEaten = 0;
     let record = localStorage.getItem("record") ? parseInt(localStorage.getItem("record")) : 0;
 
-    // Firebase Config
+    // Firebase Config (NUEVA)
     const firebaseConfig = {
-        apiKey: "AIzaSyDuzrvHmIVsoBOda3eVcNWfBbDYYO7pPHY",
-        authDomain: "taller-42947.firebaseapp.com",
-        projectId: "taller-42947",
-        storageBucket: "taller-42947.appspot.com",
-        messagingSenderId: "380282833448",
-        appId: "1:380282833448:web:55db83e13a43d35877031d"
+        apiKey: "AIzaSyBVgUX60homnvQ4pTakvUFaUeLFN3QgzEg",
+        authDomain: "snake-6a185.firebaseapp.com",
+        projectId: "snake-6a185",
+        storageBucket: "snake-6a185.firebasestorage.app",
+        messagingSenderId: "370708898068",
+        appId: "1:370708898068:web:4c3a521098192a58672201"
     };
 
     firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    // Leer récord global de Firestore
+    db.collection("highscores").doc("globalRecord").get().then(doc => {
+        if (doc.exists) {
+            const firestoreRecord = doc.data().record;
+            if (firestoreRecord > record) {
+                record = firestoreRecord;
+                localStorage.setItem("record", record);
+            }
+        }
+    }).catch(error => {
+        console.error("Error leyendo desde Firestore:", error);
+    });
 
     document.addEventListener("keydown", changeDirection);
 
@@ -106,6 +120,14 @@ document.addEventListener("DOMContentLoaded", function () {
             if (applesEaten > record) {
                 record = applesEaten;
                 localStorage.setItem("record", record);
+
+                // También guardar en Firestore
+                db.collection("highscores").doc("globalRecord").set({
+                    record: record,
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                }).catch(error => {
+                    console.error("Error guardando en Firestore:", error);
+                });
             }
         } else {
             snake.pop();
