@@ -1,0 +1,128 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    background-color: black;
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Menús centrados */
+#mainMenu, #menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 400px;
+    background: rgba(0, 0, 0, 0.9);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 5px 15px rgba(255, 255, 255, 0.3);
+}
+
+/* Botones dentro del menú */
+#mainMenu button, #menu button {
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    margin-top: 10px;
+    background-color: #ff5722;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+#mainMenu button:hover, #menu button:hover {
+    background-color: #e64a19;
+}
+
+/* Centrar el canvas del juego */
+canvas {
+    display: block;
+    margin: auto;
+    border: 2px solid white;
+}
+
+/* Centrar controles en móviles */
+.controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.control-row {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+.control-btn {
+    width: 60px;
+    height: 60px;
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+    background: #ff5722; /* Naranja arcade */
+    border: 3px solid #ffcc00; /* Amarillo neón */
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(255, 204, 0, 0.7);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.control-btn:active {
+    transform: scale(0.9);
+    background: #e64a19; /* Naranja más oscuro al presionar */
+}
+
+.menu {
+    background: rgba(0, 0, 0, 0.9);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 5px 15px rgba(255, 255, 255, 0.3);
+    width: 300px;
+    text-align: center;
+}
+
+h2 {
+    margin-bottom: 15px;
+    font-size: 20px;
+    color: white;
+}
+
+.opciones {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.opciones label {
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+}
+
+input[type="color"] {
+    border: none;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
